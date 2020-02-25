@@ -5,27 +5,39 @@ import android.media.AudioTrack;
 import android.media.AudioManager;
 import android.media.AudioFormat;
 
-class PlaySound extends Thread
-{
-	
-	static AudioTrack	track;
-	static byte[]	buff;
-	static short	s;
-	static double	c;
-	static double	d;
-	static double	b;
-	static double	vol = 1.0;
-	static boolean	flag = true;
-	static double	depth = 0.3;
-	static double	freq = 1000;
-	static double	mfreq = 30;
-	static double	m2freq = 1;
-	static double	fmr = 44100;
-	static double	tmax = 10000000000.0;
-	static double	time = 0;
+class PlaySound extends Thread {
 
-	public void		run()
-	{
+	private AudioTrack	track;
+	private byte[]	buff;
+	private short	s;
+	private double	c;
+	private double	d;
+	private double	b;
+	private double	vol;
+	private boolean	flag;
+	private double	depth;
+	private double	freq;
+	private double	mfreq;
+	private double	m2freq;
+	private double	fmr;
+	private double	tmax;
+	private double	time;
+
+	public PlaySound() {
+
+		vol = 1.0;
+		flag = true;
+		depth = 0.3;
+		freq = 1000;
+		mfreq = 30;
+		m2freq = 1;
+		fmr = 44100;
+		tmax = 10000000000.0;
+		time = 0;
+	}
+
+	public void		run() {
+
 		buff = new byte[2];
 		track = new AudioTrack(
 				AudioManager.STREAM_MUSIC,
@@ -53,10 +65,10 @@ class PlaySound extends Thread
 	}
 }
 
-public class SoundGen
-{
-	static void controller()
-	{
+public class SoundGen {
+
+	private static void controller() {
+
 		Scanner scanner = new Scanner(System.in);
 		String	command;
 		while(PlaySound.flag)
@@ -67,8 +79,8 @@ public class SoundGen
 		}
 	}
 	
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
+		
 		PlaySound playSound = new PlaySound();
 		playSound.start();
 		controller();
